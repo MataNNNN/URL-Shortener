@@ -1,0 +1,122 @@
+﻿@page
+@model UrlShortener.Pages.IndexModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>URL Shortener</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #e5eaf5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #f2f2f2;
+        }
+
+        a {
+            color: blue;
+        }
+
+        .short-link {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1> URL Shortener</h1>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div style="color:#f87171; margin-bottom:10px;">
+                @Model.ErrorMessage
+            </div>
+        }
+
+        <div class="card">
+
+            <form method="post" class="input-row">
+                @Html.AntiForgeryToken()
+                <input asp-for="Url" placeholder="Enter a long URL..." />
+                <button type="submit">Shorten</button>
+            </form>
+
+            @if (Model.Urls != null && Model.Urls.Count > 0)
+            {
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Original URL</th>
+                            <th>Short Code</th>
+                            <th>Short Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Urls)
+                        {
+                            <tr>
+                                <td>@item.OriginalUrl</td>
+                                <td class="short-link">@item.ShortCode</td>
+                                <td>
+                                    <a href="/@item.ShortCode">
+                                        localhost:5101/@item.ShortCode
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p style="color:#94a3b8;">No URLs yet.</p>
+            }
+
+        </div>
+    </div>
+</body>
+</html>

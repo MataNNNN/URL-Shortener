@@ -1,0 +1,61 @@
+﻿## Build results
+bin/
+obj/
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## VS Code / Visual Studio
+.vs/
+.vscode/
+
+## Debug / publish folders
+publish/
+wwwroot/bundles/
+
+# Logs
+*.log
+
+---
+
+# 🧱 EF Core / Database
+# (optional local db files)
+*.db
+*.sqlite
+
+# Migrations snapshot backups (if you ever create temp copies)
+*_backup.cs
+
+---
+
+# 🐳 Docker (optional local artifacts)
+docker-compose.override.yml
+**/docker-compose.override.yml
+
+---
+
+# ⚙️ Environment / secrets
+.env
+appsettings.*.Secrets.json
+
+# keep appsettings.json, but NEVER commit secrets there
+
+---
+
+# 🧪 Test results
+TestResults/
+*.trx
+
+---
+
+# 🧹 OS junk
+.DS_Store
+Thumbs.db
+
+---
+
+# 🔥 Node (only if you ever add frontend later)
+node_modules/
