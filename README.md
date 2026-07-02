@@ -31,6 +31,7 @@ cd <project-folder>
 
 # Restore dependencies
 dotnet restore
+```
 
 ## 📌 API Endpoints
 
